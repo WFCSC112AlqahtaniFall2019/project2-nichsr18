@@ -21,14 +21,18 @@ int main() {
     vector<int> t(length);  // temporary workspace
     // unit test for merge
 
-   /* vector<int>test={4,5,6,2,5,1};
-    cout<< "input: 4 5 6 2 5 1"<< endl;
+   vector<int>test={4,5,6,2,5,1};
+   /* cout<< "input: 4 5 6 2 5 1"<< endl;
     cout<<"expected output: 1 2 4 5 5 6"<<endl;
     cout<< "actual output: " <<endl;
-   // mergeSort(test,t, 0,v.size()-1);
+    mergeSort(test,t, 0,test.size()-1);
+    for(int i = 1; i < test.size()-1; i++) {
+        assert(test.at(i-1) <= test.at(i));
+    }
+
     //print unit test
-   for(int i = 0; i < v.size(); i++) {
-        cout << v.at(i) << '\t';
+   for(int i = 0; i < test.size()-1; i++) {
+        cout << test.at(i) << '\t';
     }
     cout << endl;*/
 
@@ -64,7 +68,7 @@ void mergeSortedLists(vector<int>& a, vector<int>& tmp, int left, int middle, in
 
     while(k<right){
 
-        if(a.at(i)<a.at(j)){
+        if(a.at(i)<=a.at(j)){
             tmp.at(k)=a.at(i);
             i++;
             k++;
@@ -76,21 +80,26 @@ void mergeSortedLists(vector<int>& a, vector<int>& tmp, int left, int middle, in
 
     }
     //adds end of vector if remaining values are in right half
-    if(i>middle){
+
         while(j<=right){
             tmp.at(k)=a.at(j);
             j++;
         }
-    }
+
 
     //adds end of vector if remaining values are in left half
-    if(j>right){
+
         while(i<=middle){
             tmp.at(k)=a.at(i);
             i++;
         }
-    }
+for(int l=left;l<=k;l++){
+    a.at(l)=tmp.at(l);
+}
+
+
     for(int l=0;l<tmp.size();l++){
+
         cout<<tmp.at(l)<<" ";
     }
     cout<<endl;
@@ -109,7 +118,8 @@ void mergeSort(vector<int>& a, vector<int>& tmp, int left, int right) {
 
     //cout<<n;
     //sorts list
-    mergeSortedLists(a, tmp, left, (n / 2), right);
+    mergeSortedLists(a, tmp, left, (n / 2)+1, right);
+
 }
 
 
