@@ -21,18 +21,18 @@ int main() {
     vector<int> t(length);  // temporary workspace
     // unit test for merge
 
-   vector<int>test={4,5,6,2,5,1};
-   /* cout<< "input: 4 5 6 2 5 1"<< endl;
-    cout<<"expected output: 1 2 4 5 5 6"<<endl;
-    cout<< "actual output: " <<endl;
-    mergeSort(test,t, 0,test.size()-1);
+   vector<int>test={4,5,6,2};
+   vector<int>testTemp={0, 0, 0, 0};
+   cout<<"Unit Test Running"<<endl;
+
+    mergeSortedLists(test,testTemp, 0,1,3);
     for(int i = 1; i < test.size()-1; i++) {
-        assert(test.at(i-1) <= test.at(i));
+        assert(test.at(i-1) <= testTemp.at(i));
     }
 
     //print unit test
-   for(int i = 0; i < test.size()-1; i++) {
-        cout << test.at(i) << '\t';
+   /*for(int i = 0; i < testTemp.size()-1; i++) {
+        cout << testTemp.at(i) << '\t';
     }
     cout << endl;*/
 
@@ -46,7 +46,7 @@ int main() {
     // sort v
     mergeSort(v,t,0,v.size()-1);
 
-   // mergeSortedLists(v,t,0,3,v.size()-1);
+
     // print output
     for(int i = 0; i < v.size(); i++) {
         cout << v.at(i) << '\t';
