@@ -21,20 +21,24 @@ int main() {
     vector<int> t(length);  // temporary workspace
     // unit test for merge
 
-   vector<int>test={4,5,6,2};
+  vector<int>test={4,5,2,6};
+  vector<int>correct={2,4,5,6};
    vector<int>testTemp={0, 0, 0, 0};
-   cout<<"Unit Test Running"<<endl;
+   cout<<"Unit Test"<<endl;
+   cout<<"Input Vector: 4 5 2 6"<<endl;
+   cout<<"Expected Output: 2 4 5 6"<<endl;
+   cout<<"Actual Output: ";
+   mergeSortedLists(test,testTemp, 0,1,3);
 
-    mergeSortedLists(test,testTemp, 0,1,3);
     for(int i = 1; i < test.size()-1; i++) {
         assert(test.at(i-1) <= testTemp.at(i));
     }
 
     //print unit test
-   /*for(int i = 0; i < testTemp.size()-1; i++) {
+   for(int i = 0; i < testTemp.size(); i++) {
         cout << testTemp.at(i) << '\t';
     }
-    cout << endl;*/
+    cout << endl;
 
     // initialize and print input
     for(int i = 0; i < v.size(); i++) {
@@ -66,7 +70,7 @@ void mergeSortedLists(vector<int>& a, vector<int>& tmp, int left, int middle, in
     int j=middle+1;
     int k=left;
 
-    while(k<right){
+    while(i<=middle&&j<=right){
 
         if(a.at(i)<=a.at(j)){
             tmp.at(k)=a.at(i);
@@ -84,6 +88,7 @@ void mergeSortedLists(vector<int>& a, vector<int>& tmp, int left, int middle, in
         while(j<=right){
             tmp.at(k)=a.at(j);
             j++;
+            k++;
         }
 
 
@@ -92,17 +97,18 @@ void mergeSortedLists(vector<int>& a, vector<int>& tmp, int left, int middle, in
         while(i<=middle){
             tmp.at(k)=a.at(i);
             i++;
+            k++;
         }
-for(int l=left;l<=k;l++){
-    a.at(l)=tmp.at(l);
-}
+         for(int l=left;l<=right;l++){
+             a.at(l)=tmp.at(l);
+        }
 
 
-    for(int l=0;l<tmp.size();l++){
+    /*for(int l=0;l<tmp.size();l++){
 
         cout<<tmp.at(l)<<" ";
     }
-    cout<<endl;
+    cout<<endl;*/
 
 }
 void mergeSort(vector<int>& a, vector<int>& tmp, int left, int right) {
@@ -118,7 +124,7 @@ void mergeSort(vector<int>& a, vector<int>& tmp, int left, int right) {
 
     //cout<<n;
     //sorts list
-    mergeSortedLists(a, tmp, left, (n / 2)+1, right);
+    mergeSortedLists(a, tmp, left, n, right);
 
 }
 
